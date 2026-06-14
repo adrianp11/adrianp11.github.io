@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrian Palenzuela – Senior Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f12;
+    --surface: #161a1f;
+    --border: #222730;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --accent: #4f9cf9;
+    --accent-soft: rgba(79,156,249,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(13,15,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span {
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; text-decoration: none; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); text-decoration: none; }
+
+  /* SECTIONS */
+  section {
+    padding: 96px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-card:hover { border-color: var(--accent); }
+
+  .skill-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 4px;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.2s;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .project-card:hover { border-color: var(--accent); }
+
+  .project-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .project-card p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .project-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  /* EXPERIENCE */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+
+  .exp-date {
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+
+  .exp-content h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .exp-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .contact-box h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .contact-box p {
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-size: 16px;
+  }
+
+  .contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 48px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 48px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 24px; padding-right: 24px; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .project-card { grid-template-columns: 1fr; }
+    .divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Adrian Palenzuela</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Senior Software Engineer &amp; Full Stack Developer</p>
+  <h1>Building software<br>that <span>actually ships.</span></h1>
+  <p>10+ years delivering production-grade full stack applications across e-commerce, fintech, SaaS and digital platforms. Based in Australia.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="#contact" class="btn-secondary">Get in Touch</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Technical Stack</p>
+  <h2 class="section-title">What I build with</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>Backend</h3>
+      <div class="skill-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Frontend</h3>
+      <div class="skill-tags">
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">Vue.js</span>
+        <span class="tag">React Native</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Cloud &amp; DevOps</h3>
+      <div class="skill-tags">
+        <span class="tag">AWS</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">Bitbucket Pipelines</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>Databases &amp; APIs</h3>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">GraphQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>CMS &amp; E-commerce</h3>
+      <div class="skill-tags">
+        <span class="tag">WordPress</span>
+        <span class="tag">WooCommerce</span>
+        <span class="tag">Custom Plugins</span>
+        <span class="tag">Elementor</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>AI &amp; Tooling</h3>
+      <div class="skill-tags">
+        <span class="tag">Claude Code</span>
+        <span class="tag">Agile / Scrum</span>
+        <span class="tag">JIRA</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-list">
+
+    <div class="project-card">
+      <div>
+        <h3>Budget Pet Products</h3>
+        <p>Led the full redevelopment of a high-volume e-commerce platform, migrating from a legacy PHP system to a modern Laravel and Vue architecture. Integrated payment processors including Zip Pay, AfterPay and PayPal Braintree.</p>
+        <div class="skill-tags">
+          <span class="tag">Laravel</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Payment APIs</span>
+        </div>
+      </div>
+      <a href="https://www.budgetpetproducts.com.au" target="_blank" class="project-link">Visit site ↗</a>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <h3>One World Connect</h3>
+        <p>Built full front and backend platforms for an international remittance and financial services company, coordinating with cross-functional teams to deliver API integrations and meet regulatory compliance requirements across multiple territories.</p>
+        <div class="skill-tags">
+          <span class="tag">React</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">AWS</span>
+        </div>
+      </div>
+      <a href="https://www.oneworldconnect.net" target="_blank" class="project-link">Visit site ↗</a>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <h3>Hope ELC</h3>
+        <p>Developed custom WordPress plugins from scratch in core PHP for a childcare platform, including class scheduling, parent reporting, meal tracking and ongoing site maintenance and performance optimisation.</p>
+        <div class="skill-tags">
+          <span class="tag">WordPress</span>
+          <span class="tag">PHP</span>
+          <span class="tag">Custom Plugins</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+      <a href="https://www.hopeelc.com.au" target="_blank" class="project-link">Visit site ↗</a>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career</p>
+  <h2 class="section-title">Experience</h2>
+  <div class="experience-list">
+
+    <div class="exp-item">
+      <span class="exp-date">Sep 2025 – May 2026</span>
+      <div class="exp-content">
+        <h3>Lead Software Engineer</h3>
+        <p class="exp-company">Tippler — Manila, Philippines</p>
+        <p>Led the full technical build of a new mobile and web platform for an established social media brand in the Manila nightlife scene. Delivered a React Native mobile app, Next.js consumer web platform, React TypeScript admin frontend and Java Spring Boot backend API.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Dec 2023 – Sep 2025</span>
+      <div class="exp-content">
+        <h3>Software Engineer</h3>
+        <p class="exp-company">The Little Office — Remote, Australia</p>
+        <p>Built custom WordPress plugins in core PHP for client platforms in the childcare sector. Handled performance optimisation, maintenance and Agile delivery using Jira and Bitbucket.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Mar 2023 – Sep 2023</span>
+      <div class="exp-content">
+        <h3>Senior Engineer</h3>
+        <p class="exp-company">Web Ninja — Gold Coast, Australia</p>
+        <p>Maintained and extended a custom non-framework PHP platform supporting high-volume accounting and e-commerce integrations.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Oct 2020 – Mar 2023</span>
+      <div class="exp-content">
+        <h3>Lead Developer</h3>
+        <p class="exp-company">One World Connect — Philippines / Australia (Remote)</p>
+        <p>Led design and development of front and backend platforms using React, Vue and Laravel. Coordinated international teams, delivered API integrations and expanded platform capabilities to new territories.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-date">Sep 2018 – Sep 2020</span>
+      <div class="exp-content">
+        <h3>Senior Web Developer</h3>
+        <p class="exp-company">Budget Pet Products — Gold Coast, Australia</p>
+        <p>Oversaw e-commerce platform development using Laravel and Vue. Led migration from legacy PHP to enterprise-grade Laravel architecture and integrated multiple payment processors.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <h2>Let's work together</h2>
+    <p>Open to permanent roles, contracts and freelance projects across Australia.</p>
+    <a href="mailto:adrian.palenzuela@gmail.com" class="btn-primary">adrian.palenzuela@gmail.com</a>
+    <div class="contact-details">
+      <span>+61 426 840 400</span>
+      <span>Gold Coast / Sydney, Australia</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Adrian Palenzuela &mdash; Senior Software Engineer
+</footer>
+
+</body>
+</html>
